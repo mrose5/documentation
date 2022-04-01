@@ -17,7 +17,8 @@ loadResourceAsync('/API/aapi-schema', {returntype: 'json'})
 
 
     document.getElementById('topButton').addEventListener('click', function() {
-      document.getElementById('restapi').scrollTo({top: 0, behavior: "smooth"})
+      document.documentElement.scrollTo({top: 0, behavior: 'smooth'});
+      console.log("scroll");
     }, false);
 
     function showHideCard(indexLett) {
