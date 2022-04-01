@@ -1,0 +1,176 @@
+h2 {
+  margin-top: 20px;
+}
+
+dt {
+  font-family: 'Comfortaa';
+  font-weight: bold;
+}
+
+dd {
+  font-family: 'Montserrat';
+}
+
+dd>ul {
+  list-style-type: none;
+  margin-bottom: 1%;
+  margin-top: 1.5%;
+} 
+
+li {
+  margin-left: -8%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.restapi-keyword-container {
+  border: solid 1px #38398b;
+  border-radius: 5px;
+  margin: 1% 0% 0% 0%;
+  padding: 2% 2% 2% 5%;
+  
+}
+
+dl {
+  margin-top: 0; 
+  margin-bottom: 0;
+}
+
+.keywords { 
+  flex-direction: row;
+}
+
+.restapi-keyword-styling {
+  color: #38398b;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 1%;
+  margin-bottom: 1.5%;
+}
+
+.nav-bar-background {
+  background: linear-gradient(#ffffff 75%, transparent);
+  border: 0;
+  margin: -10px -20px 0px -20px;
+  padding: 20px 20px 20px 20px;
+  position: sticky;
+  top: 0;
+}
+
+@media all and (max-width: 586px) {
+  li {
+    margin-left: -20%;
+  }
+}
+
+.nav-bar {
+  background: #38399b;
+  border: 0px;
+  border-radius: 5px;
+  color: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8px 8px 8px 8px;
+  width: auto;
+  z-index: 999;
+}
+
+.nav-buttons {
+  background: #ffffff;
+  border: solid 1px #ffffff;
+  border-radius: 2px;
+  color: #38398b;
+  font-family: 'Comfortaa';
+  font-size: 20px;
+  font-weight: bolder;
+  margin: auto;
+  padding: 2px 1.5px 1px 1px;
+  width: 26.35px; 
+  
+}
+
+.nav-buttons:hover {
+  background: #eff0ff;
+  border: solid 1px #eff0ff;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #c0c2c9;
+  border: solid 1px #c0c2c9;
+}
+
+button:disabled:hover {
+  background: #c0c2c9;
+  border: solid 1px #c0c2c9;
+}
+
+#topButton {
+  background-color: #38398b;
+  border: solid 2px #38398b;
+  border-radius: 50%;
+  bottom: 0px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 25px;
+  height: 50px;
+  padding-bottom: 8px;
+  position: absolute;
+  right: 25px;
+  width: 50px;
+  z-index: 1;
+}
+
+.tab-content {  
+  border: 1px solid #38398b;
+  border-top: 3px solid #38398b;
+  display: unset;
+  padding: 20px;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+.my-tabs label {
+  border: solid 1px #38398b;
+  border-bottom: none;
+  border-radius: 8px 8px 0px 0px; 
+  padding: 15px;
+  
+}
+
+.my-tabs label:hover {
+  background: #eff0ff;
+  border: solid 1px #38398b;
+  border-bottom: none;
+  cursor: pointer;
+}
+
+.my-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  position: relative;
+}
+
+.my-tabs .tab-content {
+  display: none;  
+  order: 1;
+  width: 100%;
+}
+
+.my-tabs input[type='radio']:checked + label + .tab-content {
+  background: #ffffff;
+  box-sizing: border-box;
+  border-top-width: 2px;
+  display: block;
+  min-height: 800px;
+  padding-top: 0;
+}
+
+.my-tabs input[type='radio']:checked + label {
+  background: #38398b;
+  color: #ffffff;
+}
+
