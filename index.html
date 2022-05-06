@@ -33,14 +33,19 @@
               <label for='tab_restapi'>AFLOW REST API</label>
               <div class='tab-content' id='restapi'>
                 <h2 id='top_restapi'>AFLOW REST API</h2>
+                <input  type='search' id='restapi-search' onkeyup='Search()' placeholder='Search Rest API'>
+                <p>The AFLOW REST API enables users to search and download results from the AFLOW database. For more details on how to download the data, please consult the original publication: R. H. Taylor, F. Rose, C. Toher, O. Levy, K. Yang, M. B. Nardelli, S. Curtarolo, <i>A RESTful API for exchanging materials data in the AFLOWLIB.org consortium</i>, Comp. Mat. Sci. <b>93</b>, 178-192 (2014). [<a href='https://doi.org/10.1016/j.commatsci.2014.05.014' target='_blank'>DOI: 10.1016/j.commatsci.2014.05.014</a>]</p>
 
                 <div class='nav-bar-background'>
-                  <div class='nav-bar' id='nav_bar_restapi'></div>
+                  <div class='nav-bar' id='nav_bar_restapi'> 
+                    <input type='radio' class='nav-buttons' id='button_search' name='nav-bar' checked>
+                    <label for='button_search' id='search_label'></label>
+                    <div class='label-content' id='keywords_search'></div>
+                  </div>
                 </div>
                 
                 <button id='topButton'><i class='fa fa-chevron-up'></i></button>
 
-                <p>The AFLOW REST API enables users to search and download results from the AFLOW database. For more details on how to download the data, please consult the original publication: R. H. Taylor, F. Rose, C. Toher, O. Levy, K. Yang, M. B. Nardelli, S. Curtarolo, <i>A RESTful API for exchanging materials data in the AFLOWLIB.org consortium</i>, Comp. Mat. Sci. <b>93</b>, 178-192 (2014). [<a href='https://doi.org/10.1016/j.commatsci.2014.05.014' target='_blank'>DOI: 10.1016/j.commatsci.2014.05.014</a>]</p>
 
                 <div class='keywords' id='keyword_card_container'></div>
 
