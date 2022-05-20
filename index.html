@@ -14,7 +14,7 @@
   <!-- CSS -->
   <link type='text/css' rel='stylesheet' href='../lib/css/main.css' />
   <link type='text/css' rel='stylesheet' href='../lib/css/fonts.css' />
-  <link type='text/css' rel='stylesheet' href='keywords.css'/>
+  <link type='text/css' rel='stylesheet' href='documentation.css'/>
   <link type='text/css' rel='stylesheet' href='../lib/css/Font-Awesome-4.3.0/css/font-awesome.min.css' />
 
   <!-- FAVICON -->
@@ -27,34 +27,33 @@
       <div class='content-main'>
         <div class='wrapper'>
           <div class='centered'>
-            <div class='my-tabs'>
-                           
-              <input type='radio' id='tab_restapi' name='my-tabs' checked>
+            <button class='top-button' id='top_button_restapi'><i class='fa fa-chevron-up'></i></button>
+            <div class='document-tabs'>                          
+              <input type='radio' id='tab_restapi' name='document-tabs' checked>
               <label for='tab_restapi'>AFLOW REST API</label>
               <div class='tab-content' id='restapi'>
                 <h2 id='top_restapi'>AFLOW REST API</h2>
-                <input  type='search' id='restapi-search' onkeyup='Search()' placeholder='Search Rest API'>
+                <div class='search-bar' id='search_bar_restapi'>
+                  <input  type='search' id='restapi_search' placeholder='Search Rest API'>
+                  <button class='search-clear' id='keyword_search_clear'>
+                    <i class='fa fa-fw fa-times'></i>
+                  </button>
+                </div>
                 <p>The AFLOW REST API enables users to search and download results from the AFLOW database. For more details on how to download the data, please consult the original publication: R. H. Taylor, F. Rose, C. Toher, O. Levy, K. Yang, M. B. Nardelli, S. Curtarolo, <i>A RESTful API for exchanging materials data in the AFLOWLIB.org consortium</i>, Comp. Mat. Sci. <b>93</b>, 178-192 (2014). [<a href='https://doi.org/10.1016/j.commatsci.2014.05.014' target='_blank'>DOI: 10.1016/j.commatsci.2014.05.014</a>]</p>
-
                 <div class='nav-bar-background'>
                   <div class='nav-bar' id='nav_bar_restapi'> 
                     <input type='radio' class='nav-buttons' id='button_search' name='nav-bar' checked>
-                    <label for='button_search' id='search_label'></label>
+                    <label for='button_search' id='search_label_restapi'></label>
                     <div class='label-content' id='keywords_search'></div>
                   </div>
-                </div>
-                
-                <button id='topButton'><i class='fa fa-chevron-up'></i></button>
-
-
+                </div>                
                 <div class='keywords' id='keyword_card_container'></div>
-
               </div>
-              <input type='radio' id='tab_aflux' name='my-tabs'>
+
+              <input type='radio' id='tab_aflux' name='document-tabs'>
               <label for='tab_aflux'>AFLUX</label>
               <div class='tab-content' id='aflux'>
                 <h2>AFLUX</h2>
-
                 <p>aflux documentation goes here</p>
               </div>           
             </div>
@@ -65,7 +64,7 @@
   </div>
   <!-- JS -->
   <script src='../lib/js/main.js'></script>
-  <script src='keywords.js'></script>
+  <script src='documentation.js'></script>
 </body>
 
 </html> 
