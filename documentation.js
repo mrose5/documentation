@@ -21,14 +21,6 @@ loadResourceAsync('/API/aapi-schema', {returntype: 'json'})
     keys.forEach(keyword => {
       
       if(schema[keyword]["status"] !== "production") return;  
-  
-      const phantomType = schema[keyword]["type"]?'<li><b>Type:</b> ' + schema[keyword]["type"] + '</li>':'';
-
-      const phantomUnits = schema[keyword]["units"]? '<li><b>Units:</b> ' + schema[keyword]["units"] + '</li>':'';
-      
-      const phantomExample = schema[keyword]["example"]?'<li><b>Example:</b> ' + schema[keyword]["example"] + '</li>':'';
-      
-      const phantomSyntax = schema[keyword]["syntax"]?'<li><b>Syntax:</b> <code>' + schema[keyword]["syntax"] + '</code> </li>':'';      
 
       tempHTML = 
         '<div class="restapi-keyword-container keyword-' + keyword[0].toUpperCase() + '" id="' + keyword + '">'
@@ -38,10 +30,10 @@ loadResourceAsync('/API/aapi-schema', {returntype: 'json'})
          +     '<dd>' 
          +       '<ul>' 
          +         '<li><b>Description:</b> ' + schema[keyword]["description"] + '</li>' 
-         +         phantomType
-         +         phantomUnits 
-         +         phantomExample
-         +         phantomSyntax 
+         +         '<li><b>Type:</b> ' + schema[keyword]["type"] + '</li>'
+         +         '<li><b>Units:</b> ' + schema[keyword]["units"] + '</li>' 
+         +         '<li><b>Example:</b> ' + schema[keyword]["example"] + '</li>'
+         +         '<li><b>Syntax:</b> <code>' + schema[keyword]["syntax"] + '</code> </li>' 
          +       '</ul>' 
          +     '</dd>' 
          +     '</dl>' 
