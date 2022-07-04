@@ -27,6 +27,14 @@ dd>ul {
 } 
 
 li {
+  text-overflow: ellipsis;
+}
+
+#aflux_wrapper {
+  margin-top: 20px;
+}
+
+.list-attributes {
   margin-left: -8%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -58,6 +66,7 @@ dl {
   margin-top: 1%;
   margin-bottom: 1.5%;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .nav-bar-background {
@@ -266,6 +275,10 @@ input[type='radio'] {
 }
 
 @media (max-width: 470px) {
+  .restapi-keyword-styling {
+    font-size: 130%;
+  } 
+
   #restapi {
     flex-direction: column;
   }
@@ -278,4 +291,27 @@ input[type='radio'] {
   #top_restapi {
     margin-bottom: 0px;
   }
+
+  #restapi_citation {
+    font-size: 85%;
+    width: 98%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .label-content {
+    font-size: 85%;
+  }
+
+  .keyword-example {
+    width: calc(98%);
+    overflow: hidden;
+  }
+}
+
+_::-webkit-full-page-media, _:future, :root .safari_only {
+
+  color:#0000FF; 
+  background-color:#CCCCCC; 
+
 }

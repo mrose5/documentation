@@ -1,68 +1,8 @@
-loadResourceAsync('/API/aapi-schema', {returntype: 'json'})
-  .then(schema => {
-    schema = schema['AAPI_schema']
-    delete schema['__schema^2__']
-    const keys = Object.keys(schema).sort((a,b) => (a.toLowerCase() > b.toLowerCase())?1:-1)
-    let alphabet = String.fromCharCode(...Array(91).keys()).slice(65);
-    let tempHTML = ''; 
-    for (let character of alphabet) {
-      tempHTML += '<input type = "radio" class="nav-buttons" id= "glossary_button_' + character + '" name="nav-bar" disabled>' 
-      + '<label for="glossary_button_' + character + '" id="button_label_' + character + '" disabled>' + character + '</label>' 
-      + '<div class="label-content" id="keywords_' + character + '"></div>';
-    }
-    document.getElementById('nav_bar_restapi').innerHTML += tempHTML;
-    tempHTML = '';
-
-
-    document.getElementById('top_button_restapi').addEventListener('click', function() {
-     scrollToY(0, 4000, 'easeOutSine');
-    }, false);
-
-    keys.forEach(keyword => {
-      
-      if(schema[keyword]["status"] !== "production") return;  
-
-      tempHTML = 
-        '<div class="restapi-keyword-container keyword-' + keyword[0].toUpperCase() + '" id="' + keyword + '">'
-         +   '<h2 class="restapi-keyword-styling">' + keyword + '</h2>'
-         +   '<dl>' 
-         +     '<dt>' + schema[keyword]["title"] + '</dt>' 
-         +     '<dd>' 
-         +       '<ul>' 
-         +         '<li><b>Description:</b> ' + schema[keyword]["description"] + '</li>' 
-         +         '<li><b>Type:</b> ' + schema[keyword]["type"] + '</li>'
-         +         '<li><b>Units:</b> ' + schema[keyword]["units"] + '</li>' 
-         +         '<li><b>Example:</b> ' + schema[keyword]["example"] + '</li>'
-         +         '<li><b>Syntax:</b> <code>' + schema[keyword]["syntax"] + '</code> </li>' 
-         +       '</ul>' 
-         +     '</dd>' 
-         +     '</dl>' 
-         + '</div>';
-      document.getElementById("keywords_" + keyword[0].toUpperCase()).innerHTML += tempHTML;
-      document.getElementById("keywords_search").innerHTML += tempHTML;
-      document.getElementById("glossary_button_" + keyword[0].toUpperCase()).disabled = false;
-      document.getElementById("button_label_" + keyword[0].toUpperCase()).disabled = false;
-    });
-   document.getElementById("glossary_button_A").checked = true;
-});
-
-let buttonMemory = '';
-document.getElementById("keyword_search_clear").addEventListener("search", function(event) {
-    document.getElementById(buttonMemory).checked = true;
-});
-
-document.getElementById("keyword_search_clear").addEventListener("click",function() {
-  document.getElementById("restapi_search").value="";
-  document.getElementById(buttonMemory).checked = true;
-});
-
-function Search() {
+function restapiSearch() {
   let radioFound = document.querySelector('input[name="nav-bar"]:checked');
   let input = document.getElementById("restapi_search").value.toLowerCase();
   let containerArray = document.getElementById("keywords_search").children;
   let length = document.getElementById("restapi_search").value.length;
-  console.log(containerArray);
-  console.log(input);
 
   if(radioFound.id != "button_search") {
     buttonMemory = radioFound.id;
@@ -83,5 +23,115 @@ function Search() {
   }
 }
 
-document.getElementById("restapi_search").addEventListener("keyup",Search);
+loadResourceAsync('/API/aapi-schema', {returntype: 'json'})
+  .then(schema => {
+    schema = schema['AAPI_schema']
+    delete schema['__schema^2__']
+    const keys = Object.keys(schema).sort((a,b) => (a.toLowerCase() > b.toLowerCase())?1:-1);
+    let tempHTML = ''; 
+    for(let c=65;c<91;c++) {
+      const character = String.fromCharCode(c);
+      tempHTML += '<input type = "radio" class="nav-buttons" id= "glossary_button_' + character + '" name="nav-bar" disabled>' 
+      + '<label for="glossary_button_' + character + '" id="button_label_' + character + '" disabled>' + character + '</label>' 
+      + '<div class="label-content" id="keywords_' + character + '"></div>';
+    }
+    document.getElementById('nav_bar_restapi').innerHTML += tempHTML;
+    tempHTML = '';
+
+
+    document.getElementById('top_button_restapi').addEventListener('click', function() {
+      scrollToY(0, 6000, 'easeOutSine');
+    }, false);
+
+    keys.forEach(restapi_keyword => {
+      let keywordUpper = restapi_keyword[0].toUpperCase();
+      
+      if(schema[restapi_keyword]["status"] !== "production") return; 
+
+      searchID =  
+        '<div class="restapi-keyword-container keyword-' + keywordUpper + '" id=search_"' + restapi_keyword + '">';
+      cardID = 
+        '<div class="restapi-keyword-container keyword-' + keywordUpper + '" id="' + restapi_keyword + '">';
+      let unitVar = schema[restapi_keyword]["units"];
+      if (typeof unitVar === "undefined") unitVar = "none";
+
+      tempHTML = 
+             '<h2 class="restapi-keyword-styling">' + restapi_keyword + '</h2>'
+         +   '<dl>' 
+         +     '<dt>' + schema[restapi_keyword]["title"] + '</dt>' 
+         +     '<dd>' 
+         +       '<ul class="list-attributes">' 
+         +         '<li><b>Description:</b> ' + schema[restapi_keyword]["description"] + '</li>' 
+         +         '<li><b>Type:</b> ' + schema[restapi_keyword]["type"] + '</li>'
+         +         '<li><b>Unit:</b> ' + unitVar + '</li>' 
+         +         '<li class="keyword-example"><b>Example:</b> ' + schema[restapi_keyword]["example"] + '</li>'
+         +         '<li><b>Syntax:</b> <code>' + schema[restapi_keyword]["syntax"] + '</code> </li>' 
+         +       '</ul>' 
+         +     '</dd>' 
+         +     '</dl>' 
+         + '</div>';
+      document.getElementById("keywords_" + keywordUpper).innerHTML += cardID + tempHTML;
+      document.getElementById("keywords_search").innerHTML += searchID + tempHTML;
+      document.getElementById("glossary_button_" + keywordUpper).disabled = false;
+      document.getElementById("button_label_" + keywordUpper).disabled = false;
+    });
+
+    document.getElementById("glossary_button_A").checked = true;
+})
+
+.then(() => { 
+    const query = window.location.href.split('?')[1];
+    if(query.includes("aflux")){
+      document.getElementById("tab_aflux").checked = true;
+    }else if(query.includes("restapi")){
+      document.getElementById("tab_restapi").checked = true;
+      const urlArray = query.split('=');
+      if (urlArray.length > 1) {  
+        const documentation = document.getElementById('glossary_button_' + urlArray[1][0].toUpperCase());
+        if (documentation) {
+          documentation.checked = true;
+        }
+        if (urlArray.length == 2) {
+          const scrollTarget = document.getElementById(urlArray[1]);
+          if (scrollTarget) {
+            console.log(scrollTarget.offsetParent);
+            scrollToTarget(scrollTarget, speed=1500, easing='easeInOutQuint', offset=0);
+          }
+        }
+      }
+    }
+})
+.catch(err => {
+  console.log(err);
+});
+
+let buttonMemory = '';
+document.getElementById("keyword_search_clear").addEventListener("search", function(event) {
+    document.getElementById(buttonMemory).checked = true;
+});
+
+document.getElementById("keyword_search_clear").addEventListener("click",function() {
+  document.getElementById("restapi_search").value="";
+  document.getElementById(buttonMemory).checked = true;
+});
+
+document.getElementById("restapi_search").addEventListener("keyup",restapiSearch);
+
+let aflux = "";
+
+loadResourceAsync('/API/aflux/v1.1/?help(general),format(html)')
+  .then(general => {
+    const newDocument = (new DOMParser).parseFromString(general, 'text/html');
+    const converted = newDocument.body.innerHTML;
+    document.getElementById("aflux_wrapper").innerHTML = converted;
+    aflux = converted;
+  });
+
+/*if (document.readyState === 'complete') {
+  displayContent();
+} else {
+  window.addEventListener('load', displayContent);
+}*/
+
 buildHeaderFooter('..');
+
