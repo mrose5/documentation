@@ -1,3 +1,8 @@
+h1 {
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
 h2 {
   margin-top: 20px;
 }
@@ -31,7 +36,8 @@ li {
 }
 
 #aflux_wrapper {
-  margin-top: 20px;
+  width: 100%;
+  word-break: break-word;
 }
 
 .list-attributes {
@@ -67,6 +73,7 @@ dl {
   margin-bottom: 1.5%;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-break: break-word;
 }
 
 .nav-bar-background {
@@ -89,6 +96,7 @@ dl {
   flex-wrap: wrap;
   padding: 8px 8px 8px 8px;
   width: auto;
+  word-break: break-word;
   z-index: 999;
 }
 
@@ -309,9 +317,3 @@ input[type='radio'] {
   }
 }
 
-_::-webkit-full-page-media, _:future, :root .safari_only {
-
-  color:#0000FF; 
-  background-color:#CCCCCC; 
-
-}

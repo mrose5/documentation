@@ -80,34 +80,41 @@ loadResourceAsync('/API/aapi-schema', {returntype: 'json'})
 })
 
 .then(() => { 
-    const query = window.location.href.split('?')[1];
-    if(query.includes("aflux")){
+  let query = "";
+  if (window.location.href.includes('?')) {
+    query = window.location.href.split('?')[1];  
+  }
+
+  switch(query.toLowerCase()) {
+    case 'aflux':
       document.getElementById("tab_aflux").checked = true;
-    }else if(query.includes("restapi")){
+      break;  
+    case 'restapi':
+    default:
       document.getElementById("tab_restapi").checked = true;
-      const urlArray = query.split('=');
-      if (urlArray.length > 1) {  
-        const documentation = document.getElementById('glossary_button_' + urlArray[1][0].toUpperCase());
+      let urlArray = query.split('=');
+      if (urlArray.length === 2) {
+        urlArray[1] = urlArray[1].toLowerCase();
+        let queryKey = urlArray[1].charAt(0).toUpperCase() + urlArray[1].slice(1);
+        const documentation = document.getElementById('glossary_button_' + queryKey[0]);
         if (documentation) {
           documentation.checked = true;
         }
-        if (urlArray.length == 2) {
-          const scrollTarget = document.getElementById(urlArray[1]);
-          if (scrollTarget) {
-            console.log(scrollTarget.offsetParent);
-            scrollToTarget(scrollTarget, speed=1500, easing='easeInOutQuint', offset=0);
-          }
+        const scrollTarget = document.getElementById(queryKey);
+        if (scrollTarget) {
+          scrollToTarget(scrollTarget, speed=1500, easing='easeInOutQuint', offset=0);
         }
       }
     }
 })
+
 .catch(err => {
   console.log(err);
 });
 
 let buttonMemory = '';
 document.getElementById("keyword_search_clear").addEventListener("search", function(event) {
-    document.getElementById(buttonMemory).checked = true;
+  document.getElementById(buttonMemory).checked = true;
 });
 
 document.getElementById("keyword_search_clear").addEventListener("click",function() {
@@ -125,6 +132,7 @@ loadResourceAsync('/API/aflux/v1.1/?help(general),format(html)')
     const converted = newDocument.body.innerHTML;
     document.getElementById("aflux_wrapper").innerHTML = converted;
     aflux = converted;
+    general.match(/<body>(.*)<\/body>/s)[1];
   });
 
 /*if (document.readyState === 'complete') {
