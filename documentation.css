@@ -158,6 +158,7 @@ input[type='radio'] {
 }
 
 .document-tabs label {
+  background: #ffffff;
   border: solid 1px #38398b;
   border-bottom: none;
   border-radius: 8px 8px 0px 0px; 
@@ -283,6 +284,27 @@ input[type='radio'] {
 }
 
 @media (max-width: 470px) {
+  blockquote {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  
+  h1 {
+    font-size: 1.5em;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  h3 {
+    font-size: 1.1em;
+  }
+
+  p {
+    font-size: 90%;
+  }
+
   .restapi-keyword-styling {
     font-size: 130%;
   } 
@@ -301,7 +323,6 @@ input[type='radio'] {
   }
 
   #restapi_citation {
-    font-size: 85%;
     width: 98%;
     overflow: hidden;
     text-overflow: ellipsis;
